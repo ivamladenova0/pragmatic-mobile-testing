@@ -27,13 +27,13 @@
     ```
     
 1. Execution
+    
+    Run all tests in Junit5 tests from package:
+    ```
+    mvn clean -Dtest=tests.demo_01_junit.*Tests test
+    ```
 
     Run all tests in GitHubTests class:
     ```
     mvn -Dtest=tests.demo_05_selenium.Tests.GitHubTests test
-    ```
-    
-    Run all tests in demo_01_junit package:
-    ```
-    mvn -Dtest=tests.demo_01_junit.* test
     ```

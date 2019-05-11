@@ -5,9 +5,9 @@ import org.junit.jupiter.api.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-@DisplayName("Class of Junit 5 Tests")
+@DisplayName("Simple Junit 5 Tests")
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-class Junit5Tests {
+class JUnit5SimpleTests {
 
     @BeforeAll
     static void beforeAll() {
@@ -26,7 +26,7 @@ class Junit5Tests {
 
     @AfterEach
     void after() {
-        System.out.println("Executes before each test in class.");
+        System.out.println("Executes after each test in class.");
     }
 
     @SuppressWarnings("ConstantConditions")

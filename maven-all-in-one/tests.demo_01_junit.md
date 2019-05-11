@@ -48,5 +48,6 @@ See demos in:
 Resources:
 - [Junit 5 Official Docs](https://junit.org/junit5/docs/current/user-guide/)
 - [Junit 5 with Maven Tutorial](https://www.petrikainulainen.net/programming/testing/junit-5-tutorial-running-unit-tests-with-maven/)
+- [Junit 5 Data Driven Tests](https://www.baeldung.com/parameterized-tests-junit-5)
 - [Junit 5 Migration Tips](https://junit.org/junit5/docs/current/user-guide/#migrating-from-junit4-tips)
 - [Junit 4 Demos](https://github.com/dtopuzov/Demos/tree/master/src/test/java/tests/demo_01_junit)
