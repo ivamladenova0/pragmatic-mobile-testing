@@ -12,7 +12,7 @@ import tests.demo_07_appium.SelendroidApp.Appium.Client;
 
 public class HomePage {
 
-    AppiumDriver driver;
+    private AppiumDriver driver;
 
     // You can use Android and iOS find by together if you test cross-platform app
     @AndroidFindBy(className = "android.widget.CheckBox")

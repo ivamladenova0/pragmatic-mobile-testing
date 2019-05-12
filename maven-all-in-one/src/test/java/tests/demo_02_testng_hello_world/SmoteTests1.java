@@ -2,6 +2,7 @@ package tests.demo_02_testng_hello_world;
 
 import org.testng.annotations.Test;
 
+@SuppressWarnings("groupsTestNG")
 public class SmoteTests1 extends BaseTest {
 
     // test12 has higher priority and will be executed before test11

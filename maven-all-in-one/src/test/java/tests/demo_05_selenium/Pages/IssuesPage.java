@@ -6,13 +6,14 @@ import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import tests.demo_05_selenium.BasePage;
 
+@SuppressWarnings("unused")
 public class IssuesPage extends BasePage {
 
-    @FindBy(xpath = "//*[@id=\"js-issues-toolbar\"]/div[1]/div[1]/a[2]")
+    @FindBy(xpath = "//*[@class=\"table-list-header-toggle states flex-auto pl-0\"]/a[2]")
     @CacheLookup
     private WebElement closedIssues;
 
-    @FindBy(xpath = "//*[@id=\"js-issues-toolbar\"]/div[1]/div[1]/a[1]")
+    @FindBy(xpath = "//*[@class=\"table-list-header-toggle states flex-auto pl-0\"]/a[1]")
     @CacheLookup
     private WebElement openIssues;
 
