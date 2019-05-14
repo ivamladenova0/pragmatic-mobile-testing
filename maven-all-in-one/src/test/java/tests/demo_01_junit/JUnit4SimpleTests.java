@@ -37,7 +37,7 @@ public class JUnit4SimpleTests {
         assertTrue(String.format("{%s} is not greater than {%s}", number2, number1), number1 < number2);
     }
 
-    @Test
+    @Test(timeout = 1000)
     void testCase2() {
         String str1 = "Junit works fine.";
         String str2 = "Junit works fine.";
