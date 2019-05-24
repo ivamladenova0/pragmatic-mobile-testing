@@ -9,3 +9,8 @@ Mobile testing solution based on Java, Gradle, Junit and Appium.
 ### HTML Reports
 
 [html-report-for-junit-5-tests](https://stackoverflow.com/questions/39444908/how-to-create-an-html-report-for-junit-5-tests)
+
+### Run only once before all classes
+
+https://stackoverflow.com/questions/43282798/in-junit-5-how-to-run-code-before-all-tests
+https://github.com/junit-team/junit5/pull/19

@@ -10,15 +10,21 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import settings.Settings;
 
-import java.io.File;
+import java.io.IOException;
 
 public class MobileTest {
     protected static AppiumDriver driver;
     private static AppiumDriverLocalService service;
+    private static Settings settings;
 
     @BeforeAll
-    public static void beforeAll() {
+    public static void beforeAll() throws IOException {
+        // Get settings
+        settings = Settings.getInstance();
+
+        // Start Appium Server
         AppiumServiceBuilder serviceBuilder = new AppiumServiceBuilder()
                 .usingAnyFreePort()
                 .withArgument(GeneralServerFlag.RELAXED_SECURITY)
@@ -27,21 +33,8 @@ public class MobileTest {
         service = AppiumDriverLocalService.buildService(serviceBuilder);
         service.start();
 
-        File appDir = new File("testapp");
-        File app = new File(appDir, "selendroid-test-app-0.11.0.apk");
-        DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, Platform.ANDROID);
-        capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "Android Emulator"); // Can be random
-        capabilities.setCapability(MobileCapabilityType.APP, app.getAbsolutePath()); // Path to app under test
-        capabilities.setCapability(MobileCapabilityType.NEW_COMMAND_TIMEOUT, 240); // Timeout to appium commands
-        capabilities.setCapability(AndroidMobileCapabilityType.ANDROID_DEVICE_READY_TIMEOUT, 120); // Fail if android device not found in 2 minutes
-        capabilities.setCapability(AndroidMobileCapabilityType.APP_WAIT_PACKAGE, "io.selendroid.testapp"); // Used to ensure app is running (not crashed at startup)
-        capabilities.setCapability(AndroidMobileCapabilityType.APP_WAIT_ACTIVITY, "io.selendroid.testapp.HomeScreenActivity"); // Used to ensure app is running (not crashed at startup)
-        // Replace Emulator-Api19-Default with name of emulator you want to test
-        capabilities.setCapability(AndroidMobileCapabilityType.AVD, "Nexus5Api23");
-        // If  you nwat to test on real android device remove the line above and use
-        // capabilities.setCapability(MobileCapabilityType.UDID, "<id of your device>"); // Use adb devices to take it.
-        driver = new AppiumDriver(service.getUrl(), capabilities);
+        // Start Appium Client
+        driver = new AppiumDriver(service.getUrl(), getCapabilities());
     }
 
     @AfterAll
@@ -53,5 +46,28 @@ public class MobileTest {
         if (service != null) {
             service.stop();
         }
+    }
+
+    private static DesiredCapabilities getCapabilities() {
+        DesiredCapabilities capabilities = new DesiredCapabilities();
+        capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, Platform.ANDROID);
+        capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "Android Emulator");
+        capabilities.setCapability(MobileCapabilityType.APP, settings.getAppPath());
+        capabilities.setCapability(MobileCapabilityType.NEW_COMMAND_TIMEOUT, 120);
+        capabilities.setCapability(AndroidMobileCapabilityType.ANDROID_DEVICE_READY_TIMEOUT, 120);
+
+        // Set avd name
+        String avd = settings.getAvdName();
+        if (avd != null) {
+            capabilities.setCapability(AndroidMobileCapabilityType.AVD, avd);
+        }
+
+        // Set device id
+        String udid = settings.getUdid();
+        if (udid != null) {
+            capabilities.setCapability(MobileCapabilityType.UDID, udid);
+        }
+
+        return capabilities;
     }
 }
