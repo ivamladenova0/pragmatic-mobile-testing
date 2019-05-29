@@ -13,7 +13,7 @@ public class Settings {
     private static Settings instance;
     private static final Object lock = new Object();
     private static String projectPath = System.getProperty("user.dir");
-    private static String propertyFilePath = projectPath + "\\src\\test\\resources\\" + System.getProperty("appConfig");
+    private static String propertyFilePath = projectPath + "/src/test/resources/" + System.getProperty("appConfig");
 
     private static String appPath;
     private static String avdName;
@@ -52,7 +52,7 @@ public class Settings {
         //Get properties from configuration.properties
         appPath = prop.getProperty("appFileName");
         if (appPath != null) {
-            appPath = projectPath + "\\testapp\\" + appPath;
+            appPath = projectPath + "/testapp/" + appPath;
         }
         avdName = prop.getProperty("avdName");
     }
