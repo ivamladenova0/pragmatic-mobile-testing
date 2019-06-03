@@ -16,8 +16,8 @@ public class HomePage extends BasePage {
         super(driver);
     }
 
-    public HomePage openLoginDemo() {
+    public LoginPage openLoginDemo() {
         loginScreenButton.click();
-        return new HomePage(driver);
+        return new LoginPage(driver);
     }
 }

@@ -3,6 +3,7 @@ package theapp.tests;
 import base.MobileTest;
 import org.junit.jupiter.api.Test;
 import theapp.pages.HomePage;
+import theapp.pages.LoginPage;
 
 class LoginTests extends MobileTest {
 
@@ -10,7 +11,7 @@ class LoginTests extends MobileTest {
 
     @Test
     void loginInvalidUser() {
-        HomePage login = home.openLoginDemo();
+        LoginPage login = home.openLoginDemo();
         login.login("Admin", "Admin");
         login.verifyAlert();
     }
