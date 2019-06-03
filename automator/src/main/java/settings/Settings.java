@@ -1,5 +1,6 @@
 package settings;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
@@ -13,11 +14,14 @@ public class Settings {
     private static Settings instance;
     private static final Object lock = new Object();
     private static String projectPath = System.getProperty("user.dir");
-    private static String propertyFilePath = projectPath + "/src/test/resources/" + System.getProperty("appConfig");
+    private static String propertyFilePath = projectPath + File.separator + "src" + File.separator + "test" +
+            File.separator + "resources" + File.separator + System.getProperty("appConfig");
 
     private static String appPath;
     private static String avdName;
     private static String udid;
+
+    private static boolean shouldRestart;
 
 
     /**
@@ -51,10 +55,14 @@ public class Settings {
 
         //Get properties from configuration.properties
         appPath = prop.getProperty("appFileName");
+
         if (appPath != null) {
-            appPath = projectPath + "/testapp/" + appPath;
+            appPath = projectPath + File.separator + "testapp" + File.separator + appPath;
         }
+
         avdName = prop.getProperty("avdName");
+
+        shouldRestart = Boolean.parseBoolean(prop.getProperty("restart", "true"));
     }
 
     /**
@@ -82,5 +90,14 @@ public class Settings {
      */
     public String getUdid() {
         return udid;
+    }
+
+    /**
+     * Determine if app should be restarted between tests.
+     *
+     * @return boolean value.
+     */
+    public boolean shouldRestartBetweenTests() {
+        return shouldRestart;
     }
 }

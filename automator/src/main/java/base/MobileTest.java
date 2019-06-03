@@ -8,6 +8,7 @@ import io.appium.java_client.service.local.AppiumServiceBuilder;
 import io.appium.java_client.service.local.flags.GeneralServerFlag;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import settings.Settings;
@@ -35,6 +36,13 @@ public class MobileTest {
 
         // Start Appium Client
         driver = new AppiumDriver(service.getUrl(), getCapabilities());
+    }
+
+    @BeforeEach
+    public void beforeEach() {
+        if (settings.shouldRestartBetweenTests()) {
+            driver.resetApp();
+        }
     }
 
     @AfterAll
