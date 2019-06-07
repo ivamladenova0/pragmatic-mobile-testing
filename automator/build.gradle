@@ -18,6 +18,7 @@ dependencies {
 }
 
 test {
+    systemProperty "appConfig", findProperty("appConfig")
     useJUnitPlatform()
     testLogging {
         events 'PASSED', 'FAILED', 'SKIPPED'

@@ -4,20 +4,31 @@
 
 Mobile testing solution based on Java, Gradle, Junit and Appium.
 
-## Hints and TODOs
+## Execute Tests
 
-### HTML Reports
+### IDE
 
-[html-report-for-junit-5-tests](https://stackoverflow.com/questions/39444908/how-to-create-an-html-report-for-junit-5-tests)
+Tests can be executed against multiple device configs.
+Configs are located in `<project-root>/src/test/resources`.
 
-### Run only once before all classes
+When execute tests via IDE you should specify config as VM option like this:
+```
+-DappConfig=nativeapp.dev.lgg6
+```
+![IDE Settings](docs/ide.png "IDE Settings")
 
-https://stackoverflow.com/questions/43282798/in-junit-5-how-to-run-code-before-all-tests
-https://github.com/junit-team/junit5/pull/19
+### Commandline
 
+Example:
+```
+./gradlew clean test --tests "nativeapp.tests.*" -PappConfig=nativeapp.dev.lgg6
+```
+This will run all test classes from `nativeapp.tests` package on configuration specified in `nativeapp.dev.lgg6` properties file.
 
-## Tutorials
+### TIPs & Tricks
 
-http://www.automationtestinghub.com/appium-tutorial/
-https://www.toolsqa.com/mobile-automation/appium/findelement-and-findelements-commands/
-https://appiumpro.com/editions/20
+#### Create or Update Gradle Wrapper
+
+```
+gradle wrapper --gradle-version 5.4.1 --distribution-type all
+```

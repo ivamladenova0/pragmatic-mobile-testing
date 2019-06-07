@@ -15,7 +15,7 @@ public class Settings {
     private static final Object lock = new Object();
     private static String projectPath = System.getProperty("user.dir");
     private static String propertyFilePath = projectPath + File.separator + "src" + File.separator + "test" +
-            File.separator + "resources" + File.separator + System.getProperty("appConfig");
+            File.separator + "resources" + File.separator + System.getProperty("appConfig") + ".properties";
 
     private static String appPath;
     private static String avdName;
