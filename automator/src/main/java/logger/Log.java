@@ -2,27 +2,30 @@ package logger;
 
 import org.apache.log4j.Logger;
 
+/**
+ * Logger.
+ */
 public class Log {
 
-    private static Logger Log = Logger.getLogger(Log.class.getName());
+    private static Logger logger = Logger.getLogger(Log.class.getName());
 
     public static void debug(String message) {
-        Log.debug(message);
+        logger.debug(message);
     }
 
     public static void info(String message) {
-        Log.info(message);
+        logger.info(message);
     }
 
     public static void warn(String message) {
-        Log.warn(message);
+        logger.warn(message);
     }
 
     public static void error(String message) {
-        Log.error(message);
+        logger.error(message);
     }
 
     public static void fatal(String message) {
-        Log.fatal(message);
+        logger.fatal(message);
     }
 }
