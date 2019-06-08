@@ -1,8 +1,8 @@
 package theapp.tests;
 
 import base.MobileTest;
-import org.junit.jupiter.api.Test;
 import org.openqa.selenium.ScreenOrientation;
+import org.testng.annotations.Test;
 import theapp.pages.HomePage;
 import theapp.pages.LoginPage;
 

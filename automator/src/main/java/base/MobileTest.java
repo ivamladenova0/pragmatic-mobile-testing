@@ -6,11 +6,11 @@ import io.appium.java_client.remote.MobileCapabilityType;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
 import io.appium.java_client.service.local.AppiumServiceBuilder;
 import io.appium.java_client.service.local.flags.GeneralServerFlag;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeTest;
 import settings.Settings;
 
 import java.io.IOException;
@@ -20,7 +20,7 @@ public class MobileTest {
     private static AppiumDriverLocalService service;
     private static Settings settings;
 
-    @BeforeAll
+    @BeforeTest
     public static void beforeAll() throws IOException {
         // Get settings
         settings = Settings.getInstance();
@@ -29,7 +29,7 @@ public class MobileTest {
         AppiumServiceBuilder serviceBuilder = new AppiumServiceBuilder()
                 .usingAnyFreePort()
                 .withArgument(GeneralServerFlag.RELAXED_SECURITY)
-                .withArgument(GeneralServerFlag.LOG_LEVEL, "info");
+                .withArgument(GeneralServerFlag.LOG_LEVEL, "warn");
 
         service = AppiumDriverLocalService.buildService(serviceBuilder);
         service.start();
@@ -38,14 +38,14 @@ public class MobileTest {
         driver = new AppiumDriver(service.getUrl(), getCapabilities());
     }
 
-    @BeforeEach
+    @BeforeMethod
     public void beforeEach() {
         if (settings.shouldRestartBetweenTests()) {
             driver.resetApp();
         }
     }
 
-    @AfterAll
+    @AfterTest
     public static void afterAll() {
         if (driver != null) {
             driver.quit();

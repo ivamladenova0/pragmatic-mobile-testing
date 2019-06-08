@@ -2,7 +2,7 @@ package nativeapp.tests;
 
 import base.MobileTest;
 import logger.Log;
-import org.junit.jupiter.api.Test;
+import org.testng.annotations.Test;
 
 class SmokeTests extends MobileTest {
 
