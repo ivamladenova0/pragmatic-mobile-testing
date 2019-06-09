@@ -2,6 +2,7 @@ package base;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.remote.AndroidMobileCapabilityType;
+import io.appium.java_client.remote.AutomationName;
 import io.appium.java_client.remote.MobileCapabilityType;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
 import io.appium.java_client.service.local.AppiumServiceBuilder;
@@ -63,19 +64,28 @@ public class MobileTest {
 
     private static DesiredCapabilities getCapabilities() {
         DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, Platform.ANDROID);
-        capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "Android Emulator");
+        capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, settings.getPlatform());
+        capabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, settings.getPlatformVersion());
+        capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, settings.getDeviceName());
         capabilities.setCapability(MobileCapabilityType.APP, settings.getAppPath());
         capabilities.setCapability(MobileCapabilityType.NEW_COMMAND_TIMEOUT, 120);
-        capabilities.setCapability(AndroidMobileCapabilityType.ANDROID_DEVICE_READY_TIMEOUT, 120);
 
-        // Set avd name
-        String avd = settings.getAvdName();
-        if (avd != null) {
-            capabilities.setCapability(AndroidMobileCapabilityType.AVD, avd);
+        // Set Android specific settings.
+        if (settings.getPlatform() == Platform.ANDROID) {
+            capabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, AutomationName.APPIUM);
+            capabilities.setCapability(AndroidMobileCapabilityType.ANDROID_DEVICE_READY_TIMEOUT, 120);
+            String avd = settings.getAvdName();
+            if (avd != null) {
+                capabilities.setCapability(AndroidMobileCapabilityType.AVD, avd);
+            }
         }
 
-        // Set device id
+        // Set iOS specific settings.
+        if (settings.getPlatform() == Platform.IOS) {
+            capabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, AutomationName.IOS_XCUI_TEST);
+        }
+
+        // Set device id.
         String udid = settings.getUdid();
         if (udid != null) {
             capabilities.setCapability(MobileCapabilityType.UDID, udid);
