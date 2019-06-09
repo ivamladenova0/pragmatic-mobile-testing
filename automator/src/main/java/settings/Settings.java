@@ -1,5 +1,7 @@
 package settings;
 
+import org.openqa.selenium.Platform;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -17,6 +19,9 @@ public class Settings {
     private static String propertyFilePath = projectPath + File.separator + "src" + File.separator + "test" +
             File.separator + "resources" + File.separator + System.getProperty("appConfig") + ".properties";
 
+    private static Platform platform;
+    private static double platformVersion;
+    private static String deviceName;
     private static String appPath;
     private static String avdName;
     private static String udid;
@@ -54,15 +59,51 @@ public class Settings {
         prop.load(new FileInputStream(propertyFilePath));
 
         //Get properties from configuration.properties
+        String platformString = prop.getProperty("appFileName");
+        if (platformString.toLowerCase().contains("android")) {
+            platform = Platform.ANDROID;
+        } else if (platformString.toLowerCase().contains("ios")) {
+            platform = Platform.IOS;
+        } else {
+            platform = null;
+        }
+        String platformVersionString = prop.getProperty("platformVersion");
+        platformVersion = Double.parseDouble(platformVersionString);
+        deviceName = prop.getProperty("deviceName", "Unknown Device");
         appPath = prop.getProperty("appFileName");
-
         if (appPath != null) {
             appPath = projectPath + File.separator + "testapp" + File.separator + appPath;
         }
-
         avdName = prop.getProperty("avdName");
-
         shouldRestart = Boolean.parseBoolean(prop.getProperty("restart", "true"));
+
+    }
+
+    /**
+     * Get platform type.
+     *
+     * @return org.openqa.selenium.Platform value.
+     */
+    public Platform getPlatform() {
+        return platform;
+    }
+
+    /**
+     * Get platform version.
+     *
+     * @return double value.
+     */
+    public double getPlatformVersion() {
+        return platformVersion;
+    }
+
+    /**
+     * Get device name.
+     *
+     * @return String.
+     */
+    public String getDeviceName() {
+        return deviceName;
     }
 
     /**

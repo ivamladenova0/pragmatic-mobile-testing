@@ -7,8 +7,11 @@ import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 import org.openqa.selenium.By;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.testng.Assert.assertEquals;
 
+/**
+ * Login demo screen.
+ */
 public class LoginPage extends BasePage {
 
     @AndroidFindBy(id = "username")
