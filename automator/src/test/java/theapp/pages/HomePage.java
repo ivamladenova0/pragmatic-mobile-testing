@@ -6,6 +6,10 @@ import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 
+
+/**
+ * Home screen of TheApp application.
+ */
 public class HomePage extends BasePage {
 
     @AndroidFindBy(id = "Login Screen")

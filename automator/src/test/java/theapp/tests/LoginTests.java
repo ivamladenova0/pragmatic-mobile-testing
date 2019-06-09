@@ -5,6 +5,9 @@ import org.testng.annotations.Test;
 import theapp.pages.HomePage;
 import theapp.pages.LoginPage;
 
+/**
+ * Tests for login demo.
+ */
 public class LoginTests extends MobileTest {
 
     private HomePage home = new HomePage(driver);

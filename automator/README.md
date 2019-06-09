@@ -2,7 +2,7 @@
 
 ## About
 
-Mobile testing solution based on Java, Gradle, Junit and Appium.
+Mobile testing solution based on Java, Gradle, TestNG and Appium.
 
 ## Execute Tests
 

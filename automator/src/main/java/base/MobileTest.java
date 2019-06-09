@@ -14,6 +14,7 @@ import org.testng.annotations.BeforeTest;
 import settings.Settings;
 
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Base test class for all mobile tests.
@@ -37,8 +38,9 @@ public class MobileTest {
         service = AppiumDriverLocalService.buildService(serviceBuilder);
         service.start();
 
-        // Start Appium Client
+        // Start Appium Client and set implicitly wait of 30sec.
         driver = new AppiumDriver(service.getUrl(), getCapabilities());
+        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
     }
 
     @BeforeMethod

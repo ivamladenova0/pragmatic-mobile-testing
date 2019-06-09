@@ -31,3 +31,5 @@ test {
         html.enabled = true
     }
 }
+
+check.dependsOn.remove(test)

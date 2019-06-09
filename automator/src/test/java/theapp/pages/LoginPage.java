@@ -9,6 +9,9 @@ import org.openqa.selenium.By;
 
 import static org.testng.Assert.assertEquals;
 
+/**
+ * Login demo screen.
+ */
 public class LoginPage extends BasePage {
 
     @AndroidFindBy(id = "username")

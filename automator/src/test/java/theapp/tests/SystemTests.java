@@ -8,6 +8,9 @@ import theapp.pages.LoginPage;
 
 import java.time.Duration;
 
+/**
+ * Tests for system operations on TheApp.
+ */
 public class SystemTests extends MobileTest {
 
     private HomePage home = new HomePage(driver);
