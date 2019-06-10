@@ -54,7 +54,8 @@ public class BasePage {
             endX = (int) (size.width * 0.7);
         }
 
-        TouchAction action = new TouchAction(driver).press(PointOption.point(startX, startY))
+        TouchAction action = new TouchAction(driver)
+                .press(PointOption.point(startX, startY))
                 .waitAction(WaitOptions.waitOptions(Duration.ofMillis(duration)))
                 .moveTo(PointOption.point(endX, endY))
                 .release();

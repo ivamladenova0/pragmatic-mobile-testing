@@ -2,6 +2,7 @@ package nativeapp.tests;
 
 import base.MobileTest;
 import enums.SwipeDirection;
+import logger.Log;
 import nativeapp.pages.HomePage;
 import nativeapp.pages.Pages;
 import nativeapp.pages.SwipePage;
@@ -24,9 +25,14 @@ public class SwipeTests extends MobileTest {
 
     @Test
     public void swipeLeftAndRight() {
-        swipePage.swipe(SwipeDirection.LEFT);
-        swipePage.swipe(SwipeDirection.LEFT);
-        swipePage.swipe(SwipeDirection.LEFT);
-        swipePage.swipe(SwipeDirection.LEFT);
+        for (int i = 0; i < 4; i++) {
+            swipePage.swipe(SwipeDirection.LEFT);
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        Log.info("test");
     }
 }
