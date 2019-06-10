@@ -15,10 +15,12 @@ import org.testng.Reporter;
 import utils.ImageUtils;
 import utils.ImageVerificationResult;
 
+import javax.annotation.Nullable;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.time.Duration;
+import java.util.ArrayList;
 
 /**
  * Base mobile page.
@@ -29,6 +31,17 @@ public class BasePage {
     public BasePage(AppiumDriver driver) {
         this.driver = driver;
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
+    }
+
+    @Nullable
+    public String getWebContext(AppiumDriver driver) {
+        ArrayList<String> contexts = new ArrayList(driver.getContextHandles());
+        for (String context : contexts) {
+            if (!context.equals("NATIVE_APP")) {
+                return context;
+            }
+        }
+        return null;
     }
 
     public void swipe(SwipeDirection direction, int duration) {
