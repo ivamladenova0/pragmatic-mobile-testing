@@ -59,7 +59,7 @@ public class Settings {
         prop.load(new FileInputStream(propertyFilePath));
 
         //Get properties from configuration.properties
-        String platformString = prop.getProperty("appFileName");
+        String platformString = prop.getProperty("platform");
         if (platformString.toLowerCase().contains("android")) {
             platform = Platform.ANDROID;
         } else if (platformString.toLowerCase().contains("ios")) {
