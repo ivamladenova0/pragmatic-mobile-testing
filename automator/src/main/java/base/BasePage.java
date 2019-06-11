@@ -34,7 +34,7 @@ public class BasePage {
     }
 
     @Nullable
-    public String getWebContext(AppiumDriver driver) {
+    private String getWebContext(AppiumDriver driver) {
         ArrayList<String> contexts = new ArrayList(driver.getContextHandles());
         for (String context : contexts) {
             if (!context.equals("NATIVE_APP")) {
@@ -42,6 +42,19 @@ public class BasePage {
             }
         }
         return null;
+    }
+
+    public void switchToWebContext() throws Exception {
+        String webContext = this.getWebContext(driver);
+        if (webContext != null) {
+            driver.context(webContext);
+        } else {
+            throw new Exception("Failed to switch to WebView context.");
+        }
+    }
+
+    public void switchToNativeContext() {
+        driver.context("NATIVE_APP");
     }
 
     public void swipe(SwipeDirection direction, int duration) {

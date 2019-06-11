@@ -6,6 +6,10 @@ import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 import logger.Log;
+import org.openqa.selenium.Platform;
+import settings.Settings;
+
+import java.io.IOException;
 
 /**
  * Swipe page of wdio demo app.
@@ -32,6 +36,7 @@ public class FormPage extends BasePage {
     public void fillInput(String text) {
         textInputField.clear();
         textInputField.sendKeys(text);
+        driver.hideKeyboard();
         Log.info(String.format("Type %s in input form.", text));
     }
 
@@ -43,12 +48,11 @@ public class FormPage extends BasePage {
         switchButton.click();
     }
 
-    public boolean isSwitchOn() {
-        String state = switchButton.getAttribute("value");
-        if (state.equals("0")) {
-            return false;
+    public boolean isSwitchOn() throws IOException {
+        if (Settings.getInstance().getPlatform() == Platform.IOS) {
+            return !switchButton.getAttribute("value").equals("0");
         } else {
-            return true;
+            return !switchButton.getAttribute("text").equals("OFF");
         }
     }
 

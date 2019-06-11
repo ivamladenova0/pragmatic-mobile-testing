@@ -33,10 +33,16 @@ This will run all test classes from `nativeapp.tests` package on configuration s
 gradle wrapper --gradle-version 5.4.1 --distribution-type all
 ```
 
-#### Inspect WebView in Native App
+#### Tips for Testing Hybrid Apps and Mobile Web
 
+**Inspect Elements**
 - [Remote Debugging Android Devices](https://developers.google.com/web/tools/chrome-devtools/remote-debugging/?utm_source=dcc&utm_medium=redirect&utm_campaign=2016q3)
+
+**ChromeDriver Versions Table**
+- [ChromeDriver Versions Table](http://appium.io/docs/en/writing-running-appium/web/chromedriver/)
+
+**Tutorials**
 - [Automating hybrid apps](http://appium.io/docs/en/writing-running-appium/web/hybrid/)
 - [Automating Cross-Platform Hybrid Apps](https://appiumpro.com/editions/17)
 - [No Chromedriver found that can automate Chrome '53.0.2785'](https://stackoverflow.com/questions/52023111/no-chromedriver-found-that-can-automate-chrome-53-0-2785)
-- [Chromedriver](https://appium.io/docs/en/writing-running-appium/web/chromedriver/)
+
