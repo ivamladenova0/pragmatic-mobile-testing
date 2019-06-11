@@ -1,20 +1,14 @@
 package nativeapp.tests;
 
 import base.MobileTest;
-import enums.SwipeDirection;
-import logger.Log;
 import nativeapp.pages.HomePage;
 import nativeapp.pages.Pages;
-import nativeapp.pages.SwipePage;
 import nativeapp.pages.WebViewPage;
-import org.openqa.selenium.By;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import java.util.Set;
-
 /**
- * Tests for swipe demo of wdio sample app.
+ * Tests for WebView demo of wdio sample app.
  */
 public class WebViewTests extends MobileTest {
 
@@ -28,10 +22,8 @@ public class WebViewTests extends MobileTest {
     }
 
     @Test
-    public void smokeTest() {
-        // Get into the webview and assert that we're not yet at the correct page
-        String webContext = webViewPage.getWebContext(driver);
-        driver.context(webContext);
-        Log.info(driver.getPageSource());
+    public void smokeTest() throws Exception {
+        webViewPage.searchFor("Appium");
+        webViewPage.verifyTextInResults("Appium setup");
     }
 }

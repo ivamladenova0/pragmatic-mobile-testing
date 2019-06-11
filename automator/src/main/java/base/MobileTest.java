@@ -7,6 +7,7 @@ import io.appium.java_client.remote.MobileCapabilityType;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
 import io.appium.java_client.service.local.AppiumServiceBuilder;
 import io.appium.java_client.service.local.flags.GeneralServerFlag;
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.annotations.AfterTest;
@@ -68,7 +69,13 @@ public class MobileTest {
         capabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, settings.getPlatformVersion());
         capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, settings.getDeviceName());
         capabilities.setCapability(MobileCapabilityType.APP, settings.getAppPath());
-        capabilities.setCapability(MobileCapabilityType.NEW_COMMAND_TIMEOUT, 120);
+
+        // Set command timeout (in debug mode timeout is huge to allow normal debugging)
+        if (settings.isDebug()) {
+            capabilities.setCapability(MobileCapabilityType.NEW_COMMAND_TIMEOUT, 3600);
+        } else {
+            capabilities.setCapability(MobileCapabilityType.NEW_COMMAND_TIMEOUT, 120);
+        }
 
         // Set Android specific settings.
         if (settings.getPlatform() == Platform.ANDROID) {
@@ -89,6 +96,14 @@ public class MobileTest {
         String udid = settings.getUdid();
         if (udid != null) {
             capabilities.setCapability(MobileCapabilityType.UDID, udid);
+        }
+
+        // Set WebView options
+        String chromeDriverVersion = settings.getChromeDriverVersion();
+        if (chromeDriverVersion != null) {
+            WebDriverManager.chromedriver().version(chromeDriverVersion).setup();
+            String path = WebDriverManager.chromedriver().version(chromeDriverVersion).getBinaryPath();
+            capabilities.setCapability(AndroidMobileCapabilityType.CHROMEDRIVER_EXECUTABLE, path);
         }
 
         return capabilities;

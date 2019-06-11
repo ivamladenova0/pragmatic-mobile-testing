@@ -5,6 +5,7 @@ import org.openqa.selenium.Platform;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.lang.management.ManagementFactory;
 import java.util.Properties;
 
 
@@ -15,9 +16,8 @@ public class Settings {
 
     private static Settings instance;
     private static final Object lock = new Object();
-    private static String projectPath = System.getProperty("user.dir");
-    private static String propertyFilePath = projectPath + File.separator + "src" + File.separator + "test" +
-            File.separator + "resources" + File.separator + System.getProperty("appConfig") + ".properties";
+
+    private static Properties prop;
 
     private static Platform platform;
     private static double platformVersion;
@@ -25,9 +25,7 @@ public class Settings {
     private static String appPath;
     private static String avdName;
     private static String udid;
-
     private static boolean shouldRestart;
-
 
     /**
      * Create a Singleton instance of settings (we need only one instance).
@@ -52,10 +50,10 @@ public class Settings {
      * @throws IOException when fails to read config file passed by `appConfig` property.
      */
     private void loadData() throws IOException {
-        // Declare a properties object
-        Properties prop = new Properties();
-
-        //Read configuration.properties file
+        String projectPath = System.getProperty("user.dir");
+        String propertyFilePath = projectPath + File.separator + "src" + File.separator + "test" +
+                File.separator + "resources" + File.separator + System.getProperty("appConfig") + ".properties";
+        prop = new Properties();
         prop.load(new FileInputStream(propertyFilePath));
 
         //Get properties from configuration.properties
@@ -125,6 +123,15 @@ public class Settings {
     }
 
     /**
+     * Get version of ChromeDriver.
+     *
+     * @return version as string (null if not specified).
+     */
+    public String getChromeDriverVersion() {
+        return prop.getProperty("chromeDriverVersion");
+    }
+
+    /**
      * Get unique device identifier of real device.
      *
      * @return udid.
@@ -140,5 +147,14 @@ public class Settings {
      */
     public boolean shouldRestartBetweenTests() {
         return shouldRestart;
+    }
+
+    /**
+     * Determine if Java debugger is attached.
+     *
+     * @return boolean value.
+     */
+    public boolean isDebug() {
+        return ManagementFactory.getRuntimeMXBean().getInputArguments().toString().contains("jdwp");
     }
 }
