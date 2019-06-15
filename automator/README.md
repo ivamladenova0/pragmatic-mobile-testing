@@ -41,8 +41,14 @@ gradle wrapper --gradle-version 5.4.1 --distribution-type all
 **ChromeDriver Versions Table**
 - [ChromeDriver Versions Table](http://appium.io/docs/en/writing-running-appium/web/chromedriver/)
 
+**Solve the issue with download and setup ChromeDriver**
+- [WebDriver Manager](https://github.com/bonigarcia/webdrivermanager)
+
 **Tutorials**
 - [Automating hybrid apps](http://appium.io/docs/en/writing-running-appium/web/hybrid/)
 - [Automating Cross-Platform Hybrid Apps](https://appiumpro.com/editions/17)
 - [No Chromedriver found that can automate Chrome '53.0.2785'](https://stackoverflow.com/questions/52023111/no-chromedriver-found-that-can-automate-chrome-53-0-2785)
 
+### Setup CI with Jenkins
+
+- Please read [Jenkins.md](docs/Jenkins.md)

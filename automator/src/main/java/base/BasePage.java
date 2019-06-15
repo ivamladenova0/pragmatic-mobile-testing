@@ -7,9 +7,7 @@ import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import io.appium.java_client.touch.WaitOptions;
 import io.appium.java_client.touch.offset.PointOption;
 import logger.Log;
-import org.openqa.selenium.Dimension;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Reporter;
 import utils.ImageUtils;
@@ -111,5 +109,10 @@ public class BasePage {
 
     public void match(String image) throws Exception {
         this.match(image, 0.01);
+    }
+
+    public boolean isTextVisible(String text) {
+        WebElement element = driver.findElement(By.xpath("//*[contains(text(), '" + text + "')]"));
+        return element.isDisplayed();
     }
 }

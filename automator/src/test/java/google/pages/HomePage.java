@@ -6,6 +6,7 @@ import logger.Log;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.testng.Assert;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -16,7 +17,7 @@ import java.net.URL;
 @SuppressWarnings("unused")
 public class HomePage extends BasePage {
 
-    @FindBy(id = "search_input_react")
+    @FindBy(xpath = "//input[@name='q']")
     private WebElement searchBox;
 
     public HomePage(AppiumDriver driver) {
@@ -35,6 +36,6 @@ public class HomePage extends BasePage {
     }
 
     public void verifyTextInResults(String text) {
-
+        Assert.assertTrue(this.isTextVisible(text), text + " is not visible!");
     }
 }
