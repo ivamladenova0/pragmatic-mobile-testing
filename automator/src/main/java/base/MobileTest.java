@@ -98,6 +98,12 @@ public class MobileTest {
             capabilities.setCapability(MobileCapabilityType.UDID, udid);
         }
 
+        // Set web capabilities
+        String browser = settings.getBrowserType();
+        if (browser != null) {
+            capabilities.setCapability(MobileCapabilityType.BROWSER_NAME, browser);
+        }
+
         // Set WebView options
         String chromeDriverVersion = settings.getChromeDriverVersion();
         if (chromeDriverVersion != null) {

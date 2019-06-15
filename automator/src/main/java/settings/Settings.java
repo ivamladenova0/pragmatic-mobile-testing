@@ -132,6 +132,15 @@ public class Settings {
     }
 
     /**
+     * Get browser type.
+     *
+     * @return version as string (null if not specified).
+     */
+    public String getBrowserType() {
+        return prop.getProperty("browser");
+    }
+
+    /**
      * Get unique device identifier of real device.
      *
      * @return udid.
