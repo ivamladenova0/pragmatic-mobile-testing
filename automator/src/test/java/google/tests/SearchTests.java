@@ -5,7 +5,7 @@ import google.pages.HomePage;
 import org.testng.annotations.Test;
 
 /**
- * Tests for google search
+ * Tests for google search.
  */
 public class SearchTests extends MobileTest {
 
