@@ -20,12 +20,15 @@ public class HomePage extends BasePage {
     @FindBy(xpath = "//input[@name='q']")
     private WebElement searchBox;
 
+    @FindBy(id = "wob_tm")
+    private WebElement temperature;
+
     public HomePage(AppiumDriver driver) {
         super(driver);
     }
 
     public void navigateTo() throws MalformedURLException {
-        driver.navigate().to(new URL("https://www.google.com/ncr"));
+        driver.navigate().to(new URL("https://google.com/ncr"));
     }
 
     public void searchFor(String text) {
@@ -37,5 +40,9 @@ public class HomePage extends BasePage {
 
     public void verifyTextInResults(String text) {
         Assert.assertTrue(this.isTextVisible(text), text + " is not visible!");
+    }
+
+    public int getTemperatureValue() {
+        return Integer.valueOf(temperature.getText());
     }
 }
