@@ -16,7 +16,7 @@ public class Main {
     public Integer humidity;
     @SerializedName("temp_min")
     @Expose
-    public Integer tempMin;
+    public Double tempMin;
     @SerializedName("temp_max")
     @Expose
     public Double tempMax;

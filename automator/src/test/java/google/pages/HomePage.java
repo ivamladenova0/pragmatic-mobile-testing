@@ -43,6 +43,8 @@ public class HomePage extends BasePage {
     }
 
     public int getTemperatureValue() {
-        return Integer.valueOf(temperature.getText());
+        String temp = temperature.getText();
+        Log.info(String.format("Web Temperature: %s", temp));
+        return Integer.valueOf(temp);
     }
 }

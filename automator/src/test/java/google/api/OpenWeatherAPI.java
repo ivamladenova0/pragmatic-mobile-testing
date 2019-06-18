@@ -2,6 +2,7 @@ package google.api;
 
 import google.api.objects.OpenWeatherResponse;
 import io.restassured.RestAssured;
+import logger.Log;
 
 import static io.restassured.RestAssured.given;
 
@@ -36,7 +37,7 @@ public class OpenWeatherAPI {
                 statusCode(200).
                 extract().
                 path("main.temp"); // Extract temperature from response body
-
+        Log.info(String.format("API Temperature: %s", temp.intValue()));
         return temp.intValue();
     }
 
