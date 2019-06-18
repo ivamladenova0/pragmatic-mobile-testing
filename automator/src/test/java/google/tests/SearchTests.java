@@ -24,7 +24,7 @@ public class SearchTests extends MobileTest {
 
     @Test
     public void searchForAppium() {
-        home.searchFor("Appium");
+        home.searchFor("appium io");
         home.verifyTextInResults("Appium: Mobile App Automation Made Awesome.");
     }
 
@@ -33,6 +33,6 @@ public class SearchTests extends MobileTest {
         home.searchFor("sofia bulgaria temperature celsius");
         int apiTemp = OpenWeatherAPI.getTemperature("Sofia,bg");
         int webTemp = home.getTemperatureValue();
-        Assert.assertTrue(Math.abs(apiTemp - webTemp) < 2, "Temperature is wrong!");
+        Assert.assertTrue(Math.abs(apiTemp - webTemp) < 5, "Temperature is wrong!");
     }
 }

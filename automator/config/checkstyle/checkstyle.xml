@@ -67,11 +67,11 @@ page at http://checkstyle.sourceforge.net/config.html -->
 
         <module name="JavadocType">
             <property name="scope" value="protected"/>
-            <property name="severity" value="error"/>
+            <property name="severity" value="ignore"/>
         </module>
 
         <module name="JavadocStyle">
-            <property name="severity" value="warning"/>
+            <property name="severity" value="ignore"/>
         </module>
 
 
