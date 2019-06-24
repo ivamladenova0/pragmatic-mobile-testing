@@ -2,6 +2,7 @@ package base;
 
 import enums.SwipeDirection;
 import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.MobileBy;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import io.appium.java_client.touch.WaitOptions;
@@ -17,8 +18,14 @@ import javax.annotation.Nullable;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.time.Duration;
 import java.util.ArrayList;
+import java.util.Base64;
 
 /**
  * Base mobile page.
@@ -114,5 +121,16 @@ public class BasePage {
     public boolean isTextVisible(String text) {
         WebElement element = driver.findElement(By.xpath("//*[contains(text(), '" + text + "')]"));
         return element.isDisplayed();
+    }
+
+    private String getReferenceImageB64(String image) throws IOException, URISyntaxException {
+        URL refImgUrl = getClass().getClassLoader().getResource(image);
+        File refImgFile = Paths.get(refImgUrl.toURI()).toFile();
+        return Base64.getEncoder().encodeToString(Files.readAllBytes(refImgFile.toPath()));
+    }
+
+    public WebElement findByImage(String image) throws IOException, URISyntaxException {
+        By sunriseImage = MobileBy.image(this.getReferenceImageB64(image));
+        return driver.findElement(sunriseImage);
     }
 }
