@@ -26,12 +26,4 @@ public class WebViewTests extends MobileTest {
         webViewPage.searchFor("Appium");
         webViewPage.verifyTextInResults("Appium setup");
     }
-
-    @Test
-    public void navigation() throws Exception {
-        webViewPage.clickText("Guide");
-        webViewPage.verifyTextInResults("Welcome to the WebdriverIO");
-        webViewPage.clickText("API");
-        webViewPage.verifyTextInResults("API Docs");
-    }
 }
