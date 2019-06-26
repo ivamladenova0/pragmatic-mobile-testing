@@ -26,6 +26,7 @@ import java.nio.file.Paths;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Base64;
+import java.util.List;
 
 /**
  * Base mobile page.
@@ -131,6 +132,7 @@ public class BasePage {
 
     public WebElement findByImage(String image) throws IOException, URISyntaxException {
         By sunriseImage = MobileBy.image(this.getReferenceImageB64(image));
-        return driver.findElement(sunriseImage);
+        List<WebElement> list = driver.findElements(sunriseImage);
+        return list.get(0);
     }
 }
