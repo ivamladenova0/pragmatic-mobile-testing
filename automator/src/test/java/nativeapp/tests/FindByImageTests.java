@@ -3,6 +3,7 @@ package nativeapp.tests;
 import base.MobileTest;
 import nativeapp.pages.HomePage;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -23,9 +24,8 @@ public class FindByImageTests extends MobileTest {
 
     @Test
     public void findByImageTest() throws IOException, URISyntaxException {
-        WebElement element = home.findByImage("nexus5api23_swipe.png");
-        element.click();
-        element = home.findByImage("nexus5api23_signup.png");
-        element.click();
+        home.findByImage("nexus5api23_webview.png").click();
+        WebElement gitIcon = home.findByImage("nexus5api23_github.png");
+        Assert.assertTrue(gitIcon.isDisplayed(), "Failed to find GitHub icon on WebView page.");
     }
 }

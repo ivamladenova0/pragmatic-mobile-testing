@@ -49,6 +49,14 @@ gradle wrapper --gradle-version 5.4.1 --distribution-type all
 - [Automating Cross-Platform Hybrid Apps](https://appiumpro.com/editions/17)
 - [No Chromedriver found that can automate Chrome '53.0.2785'](https://stackoverflow.com/questions/52023111/no-chromedriver-found-that-can-automate-chrome-53-0-2785)
 
+#### Image Based Testing
+- [opencv4nodejs](https://www.npmjs.com/package/opencv4nodejs#how-to-install)
+- [Install opencv4nodejs on Windows](docs/opencv4nodejs.md)
+- [Find By Image - Official Docs](http://appium.io/docs/en/advanced-concepts/image-elements/)
+- [Finding Elements By Image, Part 1](https://appiumpro.com/editions/32)
+- [Finding Elements By Image, Part 2](https://appiumpro.com/editions/33)
+
+
 ### Setup CI with Jenkins
 
 - Please read [Jenkins.md](docs/Jenkins.md)

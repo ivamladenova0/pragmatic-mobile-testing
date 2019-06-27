@@ -131,8 +131,7 @@ public class BasePage {
     }
 
     public WebElement findByImage(String image) throws IOException, URISyntaxException {
-        By sunriseImage = MobileBy.image(this.getReferenceImageB64(image));
-        List<WebElement> list = driver.findElements(sunriseImage);
-        return list.get(0);
+        By locator = MobileBy.image(this.getReferenceImageB64(image));
+        return driver.findElement(locator);
     }
 }
