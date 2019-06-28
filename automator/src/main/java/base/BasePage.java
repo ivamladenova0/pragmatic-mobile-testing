@@ -26,7 +26,6 @@ import java.nio.file.Paths;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Base64;
-import java.util.List;
 
 /**
  * Base mobile page.
@@ -63,7 +62,7 @@ public class BasePage {
         driver.context("NATIVE_APP");
     }
 
-    public void swipe(SwipeDirection direction, int duration) {
+    public void swipe(SwipeDirection direction, int duration, int waitAfterSwipe) {
         Dimension size = driver.manage().window().getSize();
         int centerX = (int) (size.width * 0.5);
         int centerY = (int) (size.height * 0.5);
@@ -79,11 +78,11 @@ public class BasePage {
             startY = (int) (size.height * 0.3);
             endY = (int) (size.height * 0.7);
         } else if (direction == SwipeDirection.LEFT) {
-            startX = (int) (size.width * 0.7);
-            endX = (int) (size.width * 0.3);
+            startX = (int) (size.width * 0.9);
+            endX = (int) (size.width * 0.1);
         } else if (direction == SwipeDirection.RIGHT) {
-            startX = (int) (size.width * 0.3);
-            endX = (int) (size.width * 0.7);
+            startX = (int) (size.width * 0.9);
+            endX = (int) (size.width * 0.1);
         }
 
         TouchAction action = new TouchAction(driver)
@@ -92,11 +91,22 @@ public class BasePage {
                 .moveTo(PointOption.point(endX, endY))
                 .release();
         action.perform();
+
+        try {
+            Thread.sleep(waitAfterSwipe);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
         Reporter.log(String.format("Swipe %s.", direction));
     }
 
+    public void swipe(SwipeDirection direction, int duration) {
+        this.swipe(direction, duration, 1000);
+    }
+
     public void swipe(SwipeDirection direction) {
-        this.swipe(direction, 1000);
+        this.swipe(direction, 1000, 1000);
     }
 
     public void match(String image, double tolerance, int timeout) throws Exception {

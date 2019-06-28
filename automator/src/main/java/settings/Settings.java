@@ -25,7 +25,6 @@ public class Settings {
     private static String appPath;
     private static String avdName;
     private static String udid;
-    private static boolean shouldRestart;
 
     /**
      * Create a Singleton instance of settings (we need only one instance).
@@ -73,7 +72,6 @@ public class Settings {
             appPath = projectPath + File.separator + "testapp" + File.separator + appPath;
         }
         avdName = prop.getProperty("avdName");
-        shouldRestart = Boolean.parseBoolean(prop.getProperty("restart", "true"));
 
     }
 
@@ -112,6 +110,26 @@ public class Settings {
     public String getAppPath() {
         return appPath;
     }
+
+    /**
+     * Get path to test app.
+     *
+     * @return full path to app under test.
+     */
+    public String getAppPackage() {
+        return prop.getProperty("appPackage");
+    }
+
+
+    /**
+     * Get path to test app.
+     *
+     * @return full path to app under test.
+     */
+    public String getAppActivity() {
+        return prop.getProperty("appActivity");
+    }
+
 
     /**
      * Get name of Android Virtual Device (emulator).
@@ -155,7 +173,7 @@ public class Settings {
      * @return boolean value.
      */
     public boolean shouldRestartBetweenTests() {
-        return shouldRestart;
+        return Boolean.parseBoolean(prop.getProperty("restart", "true"));
     }
 
     /**

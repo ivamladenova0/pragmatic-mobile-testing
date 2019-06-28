@@ -10,6 +10,8 @@ import io.appium.java_client.service.local.flags.GeneralServerFlag;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.testng.ITestResult;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
@@ -68,7 +70,17 @@ public class MobileTest {
         capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, settings.getPlatform());
         capabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, settings.getPlatformVersion());
         capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, settings.getDeviceName());
-        capabilities.setCapability(MobileCapabilityType.APP, settings.getAppPath());
+
+        // Set application under test
+        if (settings.getAppPath() != null) {
+            capabilities.setCapability(MobileCapabilityType.APP, settings.getAppPath());
+        }
+        if (settings.getAppPackage() != null) {
+            capabilities.setCapability(AndroidMobileCapabilityType.APP_PACKAGE, settings.getAppPackage());
+        }
+        if (settings.getAppActivity() != null) {
+            capabilities.setCapability(AndroidMobileCapabilityType.APP_ACTIVITY, settings.getAppActivity());
+        }
 
         // Set command timeout (in debug mode timeout is huge to allow normal debugging)
         if (settings.isDebug()) {
