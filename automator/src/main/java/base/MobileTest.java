@@ -1,6 +1,8 @@
 package base;
 
 import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.remote.AndroidMobileCapabilityType;
 import io.appium.java_client.remote.AutomationName;
 import io.appium.java_client.remote.MobileCapabilityType;
@@ -24,7 +26,7 @@ import java.util.concurrent.TimeUnit;
  * Base test class for all mobile tests.
  */
 public class MobileTest {
-    protected static AppiumDriver driver;
+    protected static AppiumDriver<?> driver;
     private static AppiumDriverLocalService service;
     private static Settings settings;
 
@@ -43,7 +45,11 @@ public class MobileTest {
         service.start();
 
         // Start Appium Client and set implicitly wait of 30sec.
-        driver = new AppiumDriver(service.getUrl(), getCapabilities());
+        if (settings.getPlatform() == Platform.IOS) {
+            driver = new IOSDriver(service.getUrl(), getCapabilities());
+        }else{
+            driver = new AndroidDriver(service.getUrl(), getCapabilities());
+        }
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
     }
 
