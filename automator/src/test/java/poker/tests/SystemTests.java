@@ -25,8 +25,8 @@ public class SystemTests extends MobileTest {
 
     @BeforeMethod
     public void beforeEach(ITestResult result) {
+        ((AndroidDriver) driver).setConnection(new ConnectionStateBuilder().withWiFiEnabled().build());
         if (failed) {
-            ((AndroidDriver)driver).setConnection(new ConnectionStateBuilder().withWiFiEnabled().build());
             driver.resetApp();
             homePage.handleIntro("ENGLISH");
         }
@@ -39,9 +39,17 @@ public class SystemTests extends MobileTest {
         }
     }
 
-    @Test
+    @Test(enabled = false)
     public void startAppWithoutNetwork() {
-        ((AndroidDriver)driver).setConnection(new ConnectionStateBuilder().withWiFiDisabled().build());
+        ((AndroidDriver) driver).setConnection(new ConnectionStateBuilder().withWiFiDisabled().build());
+        driver.resetApp();
+        homePage.openMenuItem("MY ACCOUNT");
+        Assert.assertEquals(homePage.getTitle(), "MY ACCOUNT");
+    }
+
+    @Test
+    public void startAppWithoutGeolocation() {
+        ((AndroidDriver) driver).toggleLocationServices();
         driver.resetApp();
         homePage.openMenuItem("MY ACCOUNT");
         Assert.assertEquals(homePage.getTitle(), "MY ACCOUNT");
