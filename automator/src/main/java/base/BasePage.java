@@ -24,12 +24,13 @@ import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.time.Duration;
-import java.util.ArrayList;
 import java.util.Base64;
+import java.util.Set;
 
 /**
  * Base mobile page.
  */
+@SuppressWarnings({"unused", "WeakerAccess"})
 public class BasePage {
     protected AppiumDriver driver;
 
@@ -40,10 +41,10 @@ public class BasePage {
 
     @Nullable
     private String getWebContext(AppiumDriver driver) {
-        ArrayList<String> contexts = new ArrayList(driver.getContextHandles());
-        for (String context : contexts) {
-            if (!context.equals("NATIVE_APP")) {
-                return context;
+        Set handles = driver.getContextHandles();
+        for (Object context : handles) {
+            if (!String.valueOf(context).equals("NATIVE_APP")) {
+                return String.valueOf(context);
             }
         }
         return null;

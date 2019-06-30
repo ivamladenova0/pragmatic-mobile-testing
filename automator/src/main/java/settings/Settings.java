@@ -76,6 +76,51 @@ public class Settings {
     }
 
     /**
+     * Get value of environment variable.
+     *
+     * @param variable     environment variable name.
+     * @param defaultValue default value (if variable is not set).
+     * @return Value of environment variable (or default value).
+     */
+    private static String getEnvironmentVariable(String variable, String defaultValue) {
+        String finalValue = defaultValue;
+        String env = System.getenv(variable);
+        if (env != null) {
+            finalValue = env;
+        }
+        return finalValue;
+    }
+
+    /**
+     * Get SauceLabs User Name.
+     *
+     * @return udid.
+     */
+    public String getSauceUserName() {
+        String defaultValue = getEnvironmentVariable("SAUCE_USER_NAME", null);
+        return prop.getProperty("sauceUserName", defaultValue);
+    }
+
+    /**
+     * Get SauceLabs Access Key.
+     *
+     * @return udid.
+     */
+    public String getSauceAccessKey() {
+        String defaultValue = getEnvironmentVariable("SAUCE_ACCESS_KEY", null);
+        return prop.getProperty("sauceAccessKey", defaultValue);
+    }
+
+    /**
+     * Get default timeout for waiting elements.
+     *
+     * @return timeout in seconds.
+     */
+    public int getDefaultTimeout() {
+        return Integer.valueOf(prop.getProperty("timeout", "30"));
+    }
+
+    /**
      * Get platform type.
      *
      * @return org.openqa.selenium.Platform value.

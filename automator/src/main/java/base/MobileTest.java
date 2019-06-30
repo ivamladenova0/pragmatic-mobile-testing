@@ -12,8 +12,6 @@ import io.appium.java_client.service.local.flags.GeneralServerFlag;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.remote.DesiredCapabilities;
-import org.testng.ITestResult;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
@@ -35,19 +33,24 @@ public class MobileTest {
         // Get settings
         settings = Settings.getInstance();
 
-        // Start Appium Server
+        // Construct AppiumServiceBuilder
         AppiumServiceBuilder serviceBuilder = new AppiumServiceBuilder()
                 .usingAnyFreePort()
-                .withArgument(GeneralServerFlag.RELAXED_SECURITY)
                 .withArgument(GeneralServerFlag.LOG_LEVEL, "warn");
 
+        // Allow RELAXED_SECURITY for local execution
+        if (settings.getSauceUserName() == null) {
+            serviceBuilder.withArgument(GeneralServerFlag.RELAXED_SECURITY);
+        }
+
+        // Start Appium Server
         service = AppiumDriverLocalService.buildService(serviceBuilder);
         service.start();
 
         // Start Appium Client and set implicitly wait of 30sec.
         if (settings.getPlatform() == Platform.IOS) {
             driver = new IOSDriver(service.getUrl(), getCapabilities());
-        }else{
+        } else {
             driver = new AndroidDriver(service.getUrl(), getCapabilities());
         }
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);

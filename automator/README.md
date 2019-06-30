@@ -56,6 +56,18 @@ gradle wrapper --gradle-version 5.4.1 --distribution-type all
 - [Finding Elements By Image, Part 1](https://appiumpro.com/editions/32)
 - [Finding Elements By Image, Part 2](https://appiumpro.com/editions/33)
 
+#### Running Tests on SauceLabs
+
+Set following environment variables:
+```
+SAUCE_USER_NAME=<your-sauce-user-name>
+SAUCE_ACCESS_KEY=<your-sauce-access-key>
+```
+or specify following in properties config file:
+```
+sauceUserName=dtop
+sauceAccessKey=test
+```
 
 ### Setup CI with Jenkins
 
