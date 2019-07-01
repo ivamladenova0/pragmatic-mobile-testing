@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 
 /**
- * Tests for swipe demo of wdio sample app.
+ * FindByImage demos with native app.
  */
 public class FindByImageTests extends MobileTest {
 
@@ -24,8 +24,9 @@ public class FindByImageTests extends MobileTest {
 
     @Test
     public void findByImageTest() throws IOException, URISyntaxException {
-        home.findByImage("nexus5api23_webview.png").click();
-        WebElement gitIcon = home.findByImage("nexus5api23_github.png");
-        Assert.assertTrue(gitIcon.isDisplayed(), "Failed to find GitHub icon on WebView page.");
+        home.findByImage("nexus5api23_login_button.png").click();
+        home.findByImage("nexus5api23_signup_button.png").click();
+        home.findByImage("nexus5api23_signup_button2.png").click();
+        home.findByImage("nexus5api23_try_again.png").click();
     }
 }
