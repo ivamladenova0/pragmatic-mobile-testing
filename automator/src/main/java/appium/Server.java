@@ -51,6 +51,6 @@ public class Server {
     }
 
     private boolean isLocal() {
-        return settings.getSauceUserName() == null;
+        return settings.getAppiumVersion() == null;
     }
 }
