@@ -14,14 +14,14 @@ public class WebViewTests extends MobileTest {
 
     private WebViewPage webViewPage;
 
-    @BeforeMethod
+    @BeforeMethod(enabled = false)
     public void beforeLoginTest() {
         HomePage homePage = new HomePage(driver);
         homePage.navigateTo(Pages.WEB_VIEW);
         webViewPage = new WebViewPage(driver);
     }
 
-    @Test
+    @Test(enabled = false)
     public void searchForAppium() throws Exception {
         webViewPage.searchFor("Appium");
         webViewPage.verifyTextInResults("Appium setup");

@@ -65,9 +65,14 @@ SAUCE_ACCESS_KEY=<your-sauce-access-key>
 ```
 or specify following in properties config file:
 ```
-sauceUserName=dtop
-sauceAccessKey=test
+sauceUserName=<your-sauce-user-name>
+sauceAccessKey=<your-sauce-access-key>
 ```
+
+Resources:
+- [Platform Configurator](https://wiki.saucelabs.com/display/DOCS/Platform+Configurator#/)
+- [Sauce Java Demos](https://github.com/saucelabs-training/demo-java/blob/master/on-boarding-modules/testng/src/test/java/Module3TestNGTest.java)
+- [Uploading and Accessing Mobile Apps for Automated Testing](https://wiki.saucelabs.com/display/DOCS/Uploading+and+Accessing+Mobile+Apps+for+Automated+Testing+on+Virtual+Devices)
 
 ### Setup CI with Jenkins
 

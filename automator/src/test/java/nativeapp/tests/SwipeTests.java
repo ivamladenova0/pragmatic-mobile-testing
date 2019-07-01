@@ -17,7 +17,7 @@ public class SwipeTests extends MobileTest {
     private SwipePage swipePage;
 
     @BeforeMethod
-    public void beforeLoginTest() {
+    public void beforeSwipeTest() {
         HomePage homePage = new HomePage(driver);
         homePage.navigateTo(Pages.SWIPE);
         swipePage = new SwipePage(driver);

@@ -1,5 +1,6 @@
 package settings;
 
+import logger.Log;
 import org.openqa.selenium.Platform;
 
 import java.io.File;
@@ -69,7 +70,13 @@ public class Settings {
         deviceName = prop.getProperty("deviceName", "Unknown Device");
         appPath = prop.getProperty("appFileName");
         if (appPath != null) {
-            appPath = projectPath + File.separator + "testapp" + File.separator + appPath;
+            if (appPath.contains("sauce")) {
+                Log.info("TODO: Upload app in SauceLabs!");
+            } else if (appPath.contains("http")) {
+                Log.info("Using test app from URL: " + appPath);
+            } else {
+                appPath = projectPath + File.separator + "testapp" + File.separator + appPath;
+            }
         }
         avdName = prop.getProperty("avdName");
 
@@ -118,6 +125,10 @@ public class Settings {
      */
     public int getDefaultTimeout() {
         return Integer.valueOf(prop.getProperty("timeout", "30"));
+    }
+
+    public String getAppiumVersion() {
+        return prop.getProperty("appiumVersion");
     }
 
     /**
