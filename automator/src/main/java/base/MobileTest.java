@@ -3,6 +3,9 @@ package base;
 import appium.Client;
 import appium.Server;
 import io.appium.java_client.AppiumDriver;
+import org.openqa.selenium.JavascriptExecutor;
+import org.testng.ITestResult;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
@@ -35,6 +38,13 @@ public class MobileTest {
     public void beforeEach() {
         if (settings.shouldRestartBetweenTests()) {
             driver.resetApp();
+        }
+    }
+
+    @AfterMethod
+    public void afterEach(ITestResult result) {
+        if (settings.getAppiumVersion() != null) {
+            ((JavascriptExecutor) driver).executeScript("sauce:job-result=" + (result.isSuccess() ? "passed" : "failed"));
         }
     }
 

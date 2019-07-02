@@ -108,6 +108,18 @@ public class Client {
             capabilities.setCapability(MobileCapabilityType.APPIUM_VERSION, settings.getAppiumVersion());
             capabilities.setCapability("username", settings.getSauceUserName());
             capabilities.setCapability("accessKey", settings.getSauceAccessKey());
+            String name = settings.getEnvironmentVariable("name", null);
+            String tags = settings.getEnvironmentVariable("tags", null);
+            String build = settings.getEnvironmentVariable("build", null);
+            if (name != null) {
+                capabilities.setCapability("name", name);
+            }
+            if (tags != null) {
+                capabilities.setCapability("tags", tags);
+            }
+            if (build != null) {
+                capabilities.setCapability("build", build);
+            }
         }
 
         return capabilities;

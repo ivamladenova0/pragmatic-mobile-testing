@@ -73,6 +73,8 @@ Resources:
 - [Platform Configurator](https://wiki.saucelabs.com/display/DOCS/Platform+Configurator#/)
 - [Sauce Java Demos](https://github.com/saucelabs-training/demo-java/blob/master/on-boarding-modules/testng/src/test/java/Module3TestNGTest.java)
 - [Uploading and Accessing Mobile Apps for Automated Testing](https://wiki.saucelabs.com/display/DOCS/Uploading+and+Accessing+Mobile+Apps+for+Automated+Testing+on+Virtual+Devices)
+- [Use Build IDs, Tags, and Names to Identify Your Tests](https://wiki.saucelabs.com/display/DOCS/Best+Practice%3A+Use+Build+IDs%2C+Tags%2C+and+Names+to+Identify+Your+Tests)
+- [Setting Test Status to Pass or Fail](https://wiki.saucelabs.com/display/DOCS/Setting+Test+Status+to+Pass+or+Fail)
 
 ### Setup CI with Jenkins
 

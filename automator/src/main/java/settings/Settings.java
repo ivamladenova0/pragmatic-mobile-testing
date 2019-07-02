@@ -89,7 +89,7 @@ public class Settings {
      * @param defaultValue default value (if variable is not set).
      * @return Value of environment variable (or default value).
      */
-    private static String getEnvironmentVariable(String variable, String defaultValue) {
+    public static String getEnvironmentVariable(String variable, String defaultValue) {
         String finalValue = defaultValue;
         String env = System.getenv(variable);
         if (env != null) {

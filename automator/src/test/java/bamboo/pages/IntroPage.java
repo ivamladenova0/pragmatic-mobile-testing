@@ -4,6 +4,7 @@ import base.BasePage;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
+import logger.Log;
 
 public class IntroPage extends BasePage {
 
@@ -24,6 +25,11 @@ public class IntroPage extends BasePage {
         Thread.sleep(1000);
         nextButton.click();
         Thread.sleep(1000);
+        Log.info("Skip intro.");
         goToLibrary.click();
+        Thread.sleep(1000);
+        Log.info("Open Library.");
+        driver.navigate().back();
+        Log.info("Hit back button to close modal dialog.");
     }
 }
